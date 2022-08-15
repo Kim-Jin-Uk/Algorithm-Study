@@ -3,7 +3,7 @@ class Node {
         this.word = false
         this.childs = {}
     }
-}
+} 
 class Trie {
     constructor(value){
         this.root = new Node()
@@ -32,7 +32,6 @@ class Trie {
             return true
         }
     }
-    
 }
 const t = new Trie()
 t.insert('apple')
