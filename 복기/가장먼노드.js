@@ -1,9 +1,8 @@
 function solution(n, edge) {
-  let map = new Map();
-  let dp = new Array(n + 1).fill(Infinity);
-  let visited = new Array(n + 1).fill(0);
-  dp[0] = 0;
-  dp[1] = 0;
+  const map = new Map();
+  const visited = new Array(n + 1).fill(0);
+  const dp = new Array(n + 1).fill(Infinity);
+  (dp[0] = 0), (dp[1] = 0);
   edge.forEach(([s, e]) => {
     if (map.has(s)) map.get(s).push(e);
     else map.set(s, [e]);
@@ -12,7 +11,7 @@ function solution(n, edge) {
   });
   const queue = [[1, 0]];
   while (queue.length) {
-    const [prev, prevEdges] = queue.shift();
+    const [prev, prevDistance] = queue.pop();
     if (visited[prev]) continue;
     visited[prev] = 1;
     if (!map.has(prev)) continue;
@@ -21,8 +20,6 @@ function solution(n, edge) {
       if (visited[next]) continue;
       queue.push([next, dp[next]]);
     }
-    queue.sort((a, b) => a[1] - b[1]);
   }
-  const maxDistance = Math.max(...dp);
-  return dp.reduce((acc, cur) => acc + (cur === maxDistance ? 1 : 0), 0);
+  console.log(dp);
 }
