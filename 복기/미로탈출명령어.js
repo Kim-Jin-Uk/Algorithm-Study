@@ -38,6 +38,4 @@ function solution(n, m, x, y, r, c, k) {
   if (x > r) answer += "u".repeat(x - r);
 
   return answer;
-  // console.log('minDist, k', minDist, k, x, y);
-  // console.log('answer: ', answer);
 }
