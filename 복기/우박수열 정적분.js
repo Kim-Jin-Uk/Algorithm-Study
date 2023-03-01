@@ -1,6 +1,6 @@
 function solution(k, ranges) {
   const integral = [0];
-  // 우박수열 정적분 값 초기화
+  // 1이 될때까지 우박수열 생성, 적분값 누산
   while (k !== 1) {
     if (k % 2) {
       integral.push((k + k * 3 + 1) / 2 + integral.at(-1));
@@ -10,10 +10,9 @@ function solution(k, ranges) {
       k /= 2;
     }
   }
+  // 시작, 종료지점의 누적 넓이의차 => 시작, 종료지점까지의 넓이의 누산값
   return ranges.map(([s, e]) => {
-    // 끝 인덱스가 시작 인덱스보다 작은 경우
     if (integral.length - 1 + e < s) return -1;
-    // 일반 케이스
     return integral.at(e - 1) - integral[s];
   });
 }
