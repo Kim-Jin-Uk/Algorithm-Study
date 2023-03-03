@@ -24,6 +24,7 @@ function solution(n, s, a, b, fares) {
       }
     }
   }
+
   for (let index = 0; index < n; index++) {
     answer = Math.min(
       answer,

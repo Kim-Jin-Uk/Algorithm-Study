@@ -38,13 +38,7 @@ function solution(clockHands) {
     let result = count;
     for (let x = 1; x < len; x++) {
       for (let y = 0; y < len; y++) {
-        const rotateDict = {
-          0: 0,
-          1: 3,
-          2: 2,
-          3: 1,
-        };
-        const key = rotateDict[table[x - 1][y]];
+        const key = table[x - 1][y] ? 4 - table[x - 1][y] : 0;
         rotatePlus(x, y, table, key);
         result += key;
       }
@@ -61,10 +55,10 @@ function solution(clockHands) {
   // 첫번째 줄 조작 (조작 안함, 우측 회전, 좌측 회전, 180도 회전)후 후처리 호출
   const dfs = (y, count, table) => {
     if (y === len) return postProcess(table, count);
-
     const cases = [0, 1, 2, 3];
     for (const c of cases) dfs(y + 1, count + c, setTable(y, table, c));
   };
+
   dfs(0, 0, clockHands);
   return answer;
 }
